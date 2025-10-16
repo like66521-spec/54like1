@@ -59,7 +59,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
 
           <div className="space-y-3">
-            {articles.map((article) => (
+            {articles.map((article: any) => (
               <ArticleCard 
                 key={article.id} 
                 article={{

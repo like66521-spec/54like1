@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
     ])
 
     return NextResponse.json({
-      users: users.map(user => ({
+      users: users.map((user: any) => ({
         ...user,
         articlesCount: user._count.articles,
         commentsCount: user._count.comments

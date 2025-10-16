@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
     ])
 
     return NextResponse.json({
-      articles: articles.map(article => ({
+      articles: articles.map((article: any) => ({
         ...article,
         comments: article._count.comments
       })),

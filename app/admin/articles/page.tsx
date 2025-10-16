@@ -52,7 +52,7 @@ export default async function AdminArticlesPage() {
                 </TableCell>
               </TableRow>
             ) : (
-              articles.map((article) => (
+              articles.map((article: any) => (
                 <TableRow key={article.id}>
                   <TableCell className="font-medium max-w-md">
                     <div className="line-clamp-2">{article.title}</div>

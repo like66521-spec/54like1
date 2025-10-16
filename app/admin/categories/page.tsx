@@ -38,7 +38,7 @@ export default async function AdminCategoriesPage() {
             </CardContent>
           </Card>
         ) : (
-          categories.map((category) => (
+            categories.map((category: any) => (
             <Card key={category.id}>
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
