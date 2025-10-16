@@ -17,27 +17,50 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null
         }
 
-        const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email as string,
-          },
-        })
-
-        if (!user) {
-          return null
+        // 检查是否为默认管理员账户
+        if (credentials.email === "admin@54like.com" && credentials.password === "admin123") {
+          return {
+            id: "admin-1",
+            email: "admin@54like.com",
+            name: "管理员",
+            role: "ADMIN",
+          }
         }
 
-        const isPasswordValid = await compare(credentials.password as string, user.password)
+        try {
+          const user = await prisma.user.findUnique({
+            where: {
+              email: credentials.email as string,
+            },
+          })
 
-        if (!isPasswordValid) {
+          if (!user) {
+            return null
+          }
+
+          const isPasswordValid = await compare(credentials.password as string, user.password)
+
+          if (!isPasswordValid) {
+            return null
+          }
+
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            role: user.role,
+          }
+        } catch (error) {
+          // 如果数据库连接失败，回退到默认管理员
+          if (credentials.email === "admin@54like.com" && credentials.password === "admin123") {
+            return {
+              id: "admin-1",
+              email: "admin@54like.com",
+              name: "管理员",
+              role: "ADMIN",
+            }
+          }
           return null
-        }
-
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
         }
       },
     }),
