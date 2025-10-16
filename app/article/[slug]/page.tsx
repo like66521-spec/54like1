@@ -11,13 +11,14 @@ import { CommentSection } from "@/components/comment-section"
 import { mockArticles } from "@/lib/mock-data"
 
 interface ArticlePageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-export default function ArticlePage({ params }: ArticlePageProps) {
-  const article = mockArticles.find((a) => a.slug === params.slug)
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const { slug } = await params
+  const article = mockArticles.find((a) => a.slug === slug)
 
   if (!article) {
     notFound()

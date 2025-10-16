@@ -6,14 +6,15 @@ import { SidebarRight } from "@/components/sidebar-right"
 import { ArticleCard } from "@/components/article-card"
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = await params
   const category = await prisma.category.findUnique({
-    where: { slug: params.slug }
+    where: { slug }
   })
 
   if (!category) {
