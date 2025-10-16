@@ -25,7 +25,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
   
   // 解析 JSON 格式的图片数组
-  const imageUrls = article.images ? JSON.parse(article.images) as string[] : []
+  const imageUrls = Array.isArray(article.images) ? article.images : []
 
   return (
     <div className="min-h-screen bg-[#f5f5f5]">
@@ -152,7 +152,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 .filter((a) => a.id !== article.id && a.categoryId === article.categoryId)
                 .slice(0, 3)
                 .map((relatedArticle) => {
-                  const relatedImageUrls = relatedArticle.images ? JSON.parse(relatedArticle.images) as string[] : []
+                  const relatedImageUrls = Array.isArray(relatedArticle.images) ? relatedArticle.images : []
                   const relatedImage = relatedImageUrls[0] || relatedArticle.coverImage
                   
                   return (

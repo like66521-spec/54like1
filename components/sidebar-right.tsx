@@ -47,7 +47,7 @@ export function SidebarRight() {
     .sort((a, b) => b.views - a.views)
     .slice(0, 5)
     .map((article) => {
-      const imageUrls = article.images ? JSON.parse(article.images) as string[] : []
+      const imageUrls = Array.isArray(article.images) ? article.images : []
       return {
         id: article.id,
         slug: article.slug,
@@ -62,7 +62,7 @@ export function SidebarRight() {
     .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
     .slice(0, 5)
     .map((article) => {
-      const imageUrls = article.images ? JSON.parse(article.images) as string[] : []
+      const imageUrls = Array.isArray(article.images) ? article.images : []
       return {
         id: article.id,
         slug: article.slug,
