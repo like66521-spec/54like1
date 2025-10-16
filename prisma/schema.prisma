@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -60,7 +60,7 @@ model Article {
   excerpt     String
   content     String
   coverImage  String?
-  images      String // JSON 存储的图片URLs
+  images      String @default("[]") // JSON 存储的图片URLs
   isPaid      Boolean  @default(false)
   price       Float?
   views       Int      @default(0)
