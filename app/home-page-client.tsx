@@ -50,7 +50,14 @@ export function HomePageClient({ articles }: HomePageClientProps) {
     <>
       <div className="space-y-3">
         {currentArticles.map((article) => (
-          <ArticleCard key={article.id} article={article} />
+          <ArticleCard key={article.id} article={{
+            ...article,
+            category: {
+              ...article.category,
+              createdAt: new Date(),
+              description: undefined
+            }
+          }} />
         ))}
       </div>
 

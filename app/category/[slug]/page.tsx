@@ -64,7 +64,18 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 key={article.id} 
                 article={{
                   ...article,
-                  comments: article._count.comments
+                  comments: article._count.comments,
+                  coverImage: article.coverImage || undefined,
+                  category: {
+                    ...article.category,
+                    description: article.category.description || undefined
+                  },
+                  author: {
+                    ...article.author,
+                    avatar: article.author.avatar || undefined,
+                    bio: article.author.bio || undefined
+                  },
+                  price: article.price || undefined
                 }} 
               />
             ))}

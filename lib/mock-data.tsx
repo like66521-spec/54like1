@@ -141,6 +141,7 @@ export const mockArticles: Article[] = [
     publishedAt: new Date("2023-09-07T11:13:00"),
     createdAt: new Date("2023-09-07"),
     updatedAt: new Date("2023-09-07"),
+    images: [] as any,
   },
   {
     id: "3",

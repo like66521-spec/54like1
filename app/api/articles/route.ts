@@ -82,13 +82,22 @@ export async function POST(request: NextRequest) {
         content: content || "",
         excerpt: excerpt || content?.slice(0, 200) || "",
         categoryId: categoryId || null,
-        authorId: session.user.id,
+        authorId: (session as any).user.id,
         slug: finalSlug,
         isPublished: status === 'PUBLISHED' || status === 'published',
+        images: [] as any,
+        coverImage: null
       },
       include: {
         category: true,
-        author: true,
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            avatar: true
+          }
+        }
       }
     })
 

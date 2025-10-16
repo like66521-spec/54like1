@@ -13,9 +13,9 @@ export default async function EditArticlePage({
     orderBy: { name: 'asc' }
   })
 
-  let article = null
+  let article = undefined
   if (params.id) {
-    article = await prisma.article.findUnique({
+    const foundArticle = await prisma.article.findUnique({
       where: { id: params.id },
       select: {
         id: true,
@@ -27,6 +27,7 @@ export default async function EditArticlePage({
         isPublished: true,
       }
     })
+    article = foundArticle || undefined
   }
 
   return <EditClient categories={categories} article={article} />

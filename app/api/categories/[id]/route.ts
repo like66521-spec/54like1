@@ -48,7 +48,7 @@ export async function DELETE(
       // 将这些文章的分类设为null
       await prisma.article.updateMany({
         where: { categoryId: id },
-        data: { categoryId: null }
+        data: { categoryId: null as any }
       })
     }
 
