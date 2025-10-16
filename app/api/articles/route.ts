@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
         categoryId: categoryId || null,
         authorId: session.user.id,
         slug: finalSlug,
-        status: status || 'DRAFT',
+        isPublished: status === 'PUBLISHED' || status === 'published',
       },
       include: {
         category: true,

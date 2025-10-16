@@ -100,7 +100,7 @@ export default async function AdminDashboardPage() {
                     <span>{new Date(article.createdAt).toLocaleDateString("zh-CN")}</span>
                   </div>
                 </div>
-                <div className="ml-4 text-sm font-medium text-green-600">{article.status === 'PUBLISHED' ? '已发布' : '草稿'}</div>
+                <div className="ml-4 text-sm font-medium text-green-600">{article.isPublished ? '已发布' : '草稿'}</div>
               </div>
             ))}
           </div>

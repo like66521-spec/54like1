@@ -24,7 +24,7 @@ export default async function EditArticlePage({
         excerpt: true,
         content: true,
         categoryId: true,
-        status: true,
+        isPublished: true,
       }
     })
   }

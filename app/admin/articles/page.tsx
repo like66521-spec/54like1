@@ -62,7 +62,7 @@ export default async function AdminArticlesPage() {
                   </TableCell>
                   <TableCell>{article.author?.name || '匿名'}</TableCell>
                   <TableCell>
-                    {article.status === 'PUBLISHED' ? (
+                    {article.isPublished ? (
                       <Badge variant="outline" className="text-green-600 border-green-600">
                         已发布
                       </Badge>

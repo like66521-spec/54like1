@@ -28,7 +28,7 @@ interface EditClientProps {
     excerpt: string | null
     content: string
     categoryId: string | null
-    status: string
+    isPublished: boolean
   }
 }
 
@@ -40,7 +40,7 @@ export function EditClient({ categories, article }: EditClientProps) {
   const [content, setContent] = useState(article?.content || "")
   const [categoryId, setCategoryId] = useState(article?.categoryId || "")
   const [status, setStatus] = useState<"DRAFT" | "PUBLISHED">(
-    (article?.status as "DRAFT" | "PUBLISHED") || "DRAFT"
+    article?.isPublished ? "PUBLISHED" : "DRAFT"
   )
   const [isSaving, setIsSaving] = useState(false)
 

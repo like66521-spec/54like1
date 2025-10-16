@@ -69,7 +69,7 @@ export async function PUT(
         content,
         excerpt,
         categoryId: categoryId || null,
-        status: status || 'DRAFT',
+        isPublished: status === 'PUBLISHED' || status === 'published',
         updatedAt: new Date(),
       },
       include: {
