@@ -1,0 +1,66 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (敏感信息,绝不提交!)
+.env*
+.env
+.env.local
+.env.production
+.env.development
+
+# 数据库文件 (包含用户数据,不要提交!)
+*.db
+*.db-journal
+prisma/dev.db
+prisma/*.db
+
+# 备份文件 (可能包含敏感数据)
+/backups/*
+!backups/.gitignore
+
+# 日志文件
+*.log
+logs/
+
+# 上传文件
+/uploads/*
+/public/uploads/*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# 安全相关
+.ssh/
+*.pem
+*.key
+*.cert
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
