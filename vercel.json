@@ -2,8 +2,12 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "npm install --legacy-peer-deps",
+  "installCommand": "npm install --legacy-peer-deps --force",
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "DATABASE_URL": "mysql://placeholder:placeholder@localhost:3306/placeholder",
+    "NEXTAUTH_SECRET": "temporary-secret-key-for-deployment",
+    "NEXTAUTH_URL": "https://54like1.vercel.app",
+    "NEXT_PUBLIC_APP_URL": "https://54like1.vercel.app"
   }
 }
