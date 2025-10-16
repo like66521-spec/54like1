@@ -7,3 +7,17 @@
     "NODE_ENV": "production"
   }
 }
+<<<<<<< HEAD
+=======
+=======
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "npm install",
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
+>>>>>>> 314152beb7598f1eacb8993cda263479fa9e52fc
+>>>>>>> 9b4ecd4409839f49b07bf24e43a1a790aaedf0c9
