@@ -4,11 +4,10 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
 }
 
-// 检查是否在构建环境中且没有真实的数据库URL
-const isBuildTime = process.env.NODE_ENV === "production" && !process.env.DATABASE_URL
+// 检查是否为占位符数据库
 const isPlaceholderDB = process.env.DATABASE_URL?.includes('placeholder')
 
-// 创建一个模拟的Prisma客户端，避免数据库连接
+// 创建一个模拟的Prisma客户端，仅在占位符数据库时使用
 const mockPrisma = {
   article: {
     findMany: () => Promise.resolve([]),
@@ -44,8 +43,8 @@ const mockPrisma = {
   },
 } as any
 
-// 在构建时或占位符数据库时，使用模拟的Prisma客户端
-export const prisma = (isBuildTime || isPlaceholderDB) 
+// 仅在占位符数据库时使用模拟客户端，否则使用真实数据库
+export const prisma = isPlaceholderDB 
   ? mockPrisma 
   : (globalForPrisma.prisma ?? new PrismaClient())
 
