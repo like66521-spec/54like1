@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
@@ -7,3 +8,14 @@
     "NODE_ENV": "production"
   }
 }
+=======
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "npm install",
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
+>>>>>>> 314152beb7598f1eacb8993cda263479fa9e52fc
