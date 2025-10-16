@@ -28,7 +28,7 @@ export async function POST() {
       zlib: { level: 9 } // 最高压缩级别
     })
 
-    return new Promise((resolve, reject) => {
+    return new Promise<NextResponse>((resolve, reject) => {
       output.on('close', () => {
         resolve(NextResponse.json({
           success: true,
