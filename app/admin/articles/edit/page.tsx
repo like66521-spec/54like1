@@ -4,17 +4,19 @@ import { EditClient } from "./edit-client"
 export default async function EditArticlePage({
   searchParams,
 }: {
-  searchParams: { id?: string }
+  searchParams: Promise<{ id?: string }>
 }) {
+  const params = await searchParams
+  
   const categories = await prisma.category.findMany({
     select: { id: true, name: true, slug: true },
     orderBy: { name: 'asc' }
   })
 
   let article = null
-  if (searchParams.id) {
+  if (params.id) {
     article = await prisma.article.findUnique({
-      where: { id: searchParams.id },
+      where: { id: params.id },
       select: {
         id: true,
         title: true,
