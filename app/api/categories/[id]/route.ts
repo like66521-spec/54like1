@@ -131,5 +131,3 @@ export async function DELETE(
     return NextResponse.json({ error: "删除分类失败" }, { status: 500 })
   }
 }
-
->>>>>>> eabbfe0ae99afa7147ab60a65374877bbe11c439
