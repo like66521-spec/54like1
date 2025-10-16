@@ -19,7 +19,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
   const [views, setViews] = useState(article.views)
 
   // 解析 JSON 格式的图片数组
-  const imageUrls = Array.isArray(article.images) ? article.images : []
+  const imageUrls: string[] = Array.isArray(article.images) ? article.images : []
   const hasImages = imageUrls.length > 0
   const isSingleImage = hasImages && imageUrls.length === 1
   const isMultiImage = hasImages && imageUrls.length > 1
