@@ -5,11 +5,12 @@ import { requireAdmin } from "@/app/admin/actions"
 // 获取单个文章
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const article = await prisma.article.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         category: true,
         author: true,
@@ -33,7 +34,7 @@ export async function GET(
 
     // 增加浏览量
     await prisma.article.update({
-      where: { id: params.id },
+      where: { id },
       data: { views: { increment: 1 } }
     })
 
@@ -47,11 +48,12 @@ export async function GET(
 // 更新文章
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireAdmin()
     
+    const { id } = await params
     const body = await request.json()
     const { title, slug, content, excerpt, categoryId, status } = body
 
@@ -60,7 +62,7 @@ export async function PUT(
     }
 
     const article = await prisma.article.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title,
         slug: slug || title.toLowerCase().replace(/\s+/g, '-'),
@@ -86,13 +88,14 @@ export async function PUT(
 // 删除文章
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireAdmin()
     
+    const { id } = await params
     await prisma.article.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     return NextResponse.json({ success: true })

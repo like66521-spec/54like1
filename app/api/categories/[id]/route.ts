@@ -5,11 +5,12 @@ import { requireAdmin } from "@/app/admin/actions"
 // 更新分类
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireAdmin()
     
+    const { id } = await params
     const body = await request.json()
     const { name, slug, description } = body
 
@@ -18,7 +19,7 @@ export async function PUT(
     }
 
     const category = await prisma.category.update({
-      where: { id: params.id },
+      where: { id },
       data: { name, slug, description }
     })
 
@@ -32,27 +33,28 @@ export async function PUT(
 // 删除分类
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireAdmin()
 
+    const { id } = await params
     // 检查是否有文章使用此分类
     const articlesCount = await prisma.article.count({
-      where: { categoryId: params.id }
+      where: { categoryId: id }
     })
 
     if (articlesCount > 0) {
       // 将这些文章的分类设为null
       await prisma.article.updateMany({
-        where: { categoryId: params.id },
+        where: { categoryId: id },
         data: { categoryId: null }
       })
     }
 
     // 删除分类
     await prisma.category.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     return NextResponse.json({ success: true })
